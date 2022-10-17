@@ -20,10 +20,9 @@ public class Main {
 				"参数错误");
 		MinHash mh = new MinHash(args[0], Integer.parseInt(args[1]));
 		int[][] hashMtx = mh.minHashMatrix();
-		String[] docNames = mh.allDocs();
-		String[] fileNames = mh.folder.list();	//所有文章对应的文件
+		String[] fileNames = mh.allDocs();//所有文章对应的文件
 		ArrayList<Pair<Pair<String, String>, Double>> res = new ArrayList<>();
-		LSH lsh = new LSH(hashMtx, docNames, Integer.parseInt(args[2]));
+		LSH lsh = new LSH(hashMtx, fileNames, Integer.parseInt(args[2]));
 		for (String fileName : fileNames) {
 			//  候选对
 			List<String> nearDuplicates = lsh.nearDuplicatesOf(fileName);
